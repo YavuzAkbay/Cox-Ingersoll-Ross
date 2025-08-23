@@ -1,7 +1,7 @@
 # Cox-Ingersoll-Ross and Vasicek Interest Rate Models
 
 **Author:** Yavuz Akbay
-**Email:** [akbay.yavuz@gmail.com]
+**Email:** akbay.yavuz@gmail.com
 
 A clean, comprehensive Python framework for quantitative analysis of interest rate dynamics using the Cox-Ingersoll-Ross (CIR) and Vasicek models.
 
