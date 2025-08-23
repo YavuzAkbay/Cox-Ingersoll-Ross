@@ -315,7 +315,7 @@ This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
-- **Author**: [YavuzAkbay] - For developing this comprehensive interest rate modeling framework
+- **Author**: YavuzAkbay - For developing this comprehensive interest rate modeling framework
 - **FRED**: Federal Reserve Economic Data for providing excellent financial data APIs
 - **Academic Community**: For the foundational work on interest rate modeling
 - **Open Source Community**: For the excellent Python libraries that make this project possible
@@ -336,4 +336,4 @@ This project is licensed under the MIT License.
 
 **⭐ Star this repository if you find it useful!**
 
-*Built with ❤️ by [YavuzAkbay] for the quantitative finance community*
+*Built with ❤️ by YavuzAkbay for the quantitative finance community*
