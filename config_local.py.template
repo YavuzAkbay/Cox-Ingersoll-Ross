@@ -1,0 +1,3 @@
+"""Local Configuration Template"""
+
+FRED_API_KEY = "your_fred_api_key_here"
