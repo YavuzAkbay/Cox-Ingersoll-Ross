@@ -1,6 +1,7 @@
 # Cox-Ingersoll-Ross Interest Rate Models with Advanced Quantitative Analysis & ML Extensions
 
-Python License SciPy SHAP Status
+**Author:** Yavuz Akbay
+**Email:** akbay.yavuz@gmail.com
 
 A sophisticated implementation of Cox-Ingersoll-Ross (CIR) and Vasicek interest rate models enhanced with Machine Learning predictions, advanced quantitative analysis, comprehensive bond pricing & risk metrics, and **explainability & transparency features** that quants demand.
 
@@ -478,9 +479,10 @@ This project is licensed under the GNU GPLv3 License - see the LICENSE.TXT file 
 
 ## 🙏 Acknowledgments
 
-* **Academic Community**: For the foundational research in interest rate modeling and bond pricing
-* **Open Source Community**: For the excellent libraries that make this project possible
-* **Financial Industry**: For the real-world applications and feedback that drive improvements
+- **Author**: YavuzAkbay - For developing this comprehensive interest rate modeling framework
+- **FRED**: Federal Reserve Economic Data for providing excellent financial data APIs
+- **Academic Community**: For the foundational work on interest rate modeling
+- **Open Source Community**: For the excellent Python libraries that make this project possible
 
 ## 📞 Contact & Support
 
@@ -493,3 +495,5 @@ This project is licensed under the GNU GPLv3 License - see the LICENSE.TXT file 
 **🎉 Your CIR model now includes sophisticated features that quants demand, including comprehensive bond pricing, risk metrics, and enhanced explainability & transparency features!**
 
 **⭐ If you find this project useful, please consider giving it a star on GitHub!**
+
+*Built with ❤️ by YavuzAkbay for the quantitative finance community*
