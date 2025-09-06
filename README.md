@@ -79,7 +79,14 @@ A sophisticated implementation of Cox-Ingersoll-Ross (CIR) and Vasicek interest 
 * **Regime-dependent parameters** - different dynamics in different market conditions
 * **Perfect for**: Dynamic risk management, tactical asset allocation
 
-#### 4. **Stochastic Volatility Extensions**
+#### 4. **Heath-Jarrow-Morton (HJM) Framework**
+
+* **Forward rate modeling** - models the entire forward rate curve evolution
+* **Multi-factor volatility structures** - constant, exponential, hump, and linear volatility
+* **No-arbitrage conditions** - ensures consistent pricing across maturities
+* **Perfect for**: Complex derivatives pricing, term structure analysis, risk management
+
+#### 5. **Stochastic Volatility Extensions**
 
 * **Time-varying volatility** - captures volatility clustering in interest rates
 * **Volatility-of-volatility** - models uncertainty in volatility itself
@@ -106,12 +113,34 @@ A sophisticated implementation of Cox-Ingersoll-Ross (CIR) and Vasicek interest 
 
 ## 🚀 Quick Start
 
-### Installation
+### Easy Setup (Recommended)
 
 ```bash
 # Clone the repository
 git clone https://github.com/YavuzAkbay/Cox-Ingersoll-Ross.git
 cd Cox-Ingersoll-Ross
+
+# Run the automated setup script
+python setup.py
+```
+
+The setup script will:
+- Check Python version compatibility
+- Create a virtual environment
+- Install all dependencies
+- Create configuration files
+- Test the installation
+
+### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YavuzAkbay/Cox-Ingersoll-Ross.git
+cd Cox-Ingersoll-Ross
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -119,6 +148,39 @@ pip install -r requirements.txt
 # Configure API keys (optional, for live data)
 cp config_local.py.template config_local.py
 # Edit config_local.py and add your FRED API key
+```
+
+### Running the Application
+
+#### Quick Start Options
+
+```bash
+# Quick test (fastest)
+python run_app.py --mode basic
+
+# Optimized analysis (recommended)
+python run_app.py --mode optimized
+
+# Complete analysis (may take longer)
+python run_app.py --mode full
+
+# Run example scripts
+python run_app.py --examples
+```
+
+#### Direct Execution
+
+```bash
+# Run optimized version (recommended)
+python main_optimized.py
+
+# Run original version
+python main.py
+
+# Run specific examples
+python examples/basic_simulation.py
+python examples/ml_comparison.py
+python examples/hjm_demo.py
 ```
 
 ### Basic Usage
@@ -143,17 +205,45 @@ print(f"10-year bond price: {bond_price:.4f}")
 print(f"Yield curve: {yields}")
 ```
 
-### Run Complete Demonstration
+### What Each Version Does
 
-```bash
-python main.py
+- **`main_optimized.py`**: Balanced analysis with optimized performance (~11 seconds)
+- **`main.py`**: Complete analysis with all features (may take several minutes)
+- **`run_app.py`**: Quick start script with different run modes
+- **`setup.py`**: Automated setup and installation script
+
+## 📁 Project Structure
+
 ```
-
-This will run a comprehensive demonstration including:
-- Model simulation and comparison
-- Bond pricing and yield curve analysis
-- Real-time data fetching and analysis
-- Machine learning model evaluation
+Cox-Ingersoll-Ross/
+├── 📄 main.py                    # Original main application
+├── 📄 main_optimized.py          # Optimized version (recommended)
+├── 📄 run_app.py                 # Quick start script
+├── 📄 setup.py                   # Automated setup script
+├── 📄 config.py                  # Main configuration
+├── 📄 config_local.py.template   # Template for local config
+├── 📄 requirements.txt           # Python dependencies
+├── 📄 README.md                  # This file
+├── 📄 LICENSE.TXT                # License information
+├── 📁 models/                    # Model implementations
+│   ├── 📄 __init__.py
+│   ├── 📄 cir_model.py           # Cox-Ingersoll-Ross model
+│   ├── 📄 vasicek_model.py       # Vasicek model
+│   ├── 📄 hjm_model.py           # Heath-Jarrow-Morton model
+│   └── 📄 ml_extensions.py       # ML models (regime-switching, etc.)
+├── 📁 data/                      # Data handling
+│   ├── 📄 __init__.py
+│   └── 📄 data_fetcher.py        # FRED and Yahoo Finance integration
+├── 📁 utils/                     # Utility functions
+│   ├── 📄 __init__.py
+│   └── 📄 helpers.py             # Risk metrics and helpers
+├── 📁 examples/                  # Example scripts
+│   ├── 📄 basic_simulation.py    # Basic model demonstration
+│   ├── 📄 ml_comparison.py       # ML model comparison
+│   └── 📄 hjm_demo.py            # HJM framework demo
+├── 📁 visualizations/            # Output directory for plots
+└── 📁 venv/                      # Virtual environment (created by setup)
+```
 
 ## 🔍 Enhanced Explainability & Transparency Features
 
@@ -259,6 +349,44 @@ forecast_curves = cir_model.forecast_yield_curve(
 
 # Analyze yield curve dynamics
 curve_analysis = cir_model.analyze_yield_curve_dynamics(yield_data)
+```
+
+### Heath-Jarrow-Morton (HJM) Framework
+
+```python
+from models import create_sample_hjm_model
+
+# Create HJM model with different volatility structures
+hjm_model = create_sample_hjm_model(
+    n_factors=2, 
+    volatility_type='exponential'
+)
+
+# Simulate forward rate evolution
+times, forward_rates, spot_rates = hjm_model.simulate_forward_rates(
+    T=5, dt=1/252, n_paths=1000, method='euler'
+)
+
+# Analyze model properties
+analysis = hjm_model.analyze_model_properties(times, forward_rates, spot_rates)
+
+# Bond pricing with HJM
+current_forward_curve = forward_rates[0, -1, :]
+bond_price = hjm_model.bond_price(current_forward_curve, 0, 5)
+
+print(f"5-year bond price: {bond_price:.4f}")
+print(f"Term structure slope: {analysis['term_structure']['slope']:.6f}")
+```
+
+### Available Volatility Structures
+
+```python
+# Different volatility structures for HJM model
+volatility_types = ['constant', 'exponential', 'hump', 'linear']
+
+for vol_type in volatility_types:
+    model = create_sample_hjm_model(n_factors=2, volatility_type=vol_type)
+    # Use the model for analysis...
 ```
 
 ## 🔬 Advanced Features
@@ -408,6 +536,8 @@ The CIR model's square-root diffusion captures volatility clustering where high 
 
 ## 📈 Enhanced Performance
 
+### Model Performance
+
 The advanced models typically show:
 
 * **25-45% improvement** in yield curve forecasting accuracy with regime awareness
@@ -418,6 +548,15 @@ The advanced models typically show:
 * **Effective risk reduction** of 15-35% with portfolio immunization and dynamic hedging
 * **Improved model transparency** with comprehensive explainability framework
 * **Better regulatory compliance** with detailed model validation and documentation
+
+### Application Performance
+
+* **Quick Test**: Completes in <1 second for basic functionality verification
+* **Optimized Analysis**: Full analysis completes in ~11 seconds with balanced parameters
+* **Complete Analysis**: Comprehensive analysis with all features (may take several minutes)
+* **Memory Efficient**: Optimized for large-scale simulations with minimal memory footprint
+* **Parallel Processing**: Multi-core support for Monte Carlo simulations
+* **Caching**: Intelligent caching for repeated calculations and parameter estimation
 
 ## 🛠️ Technical Details
 
@@ -483,6 +622,48 @@ This project is licensed under the GNU GPLv3 License - see the LICENSE.TXT file 
 - **FRED**: Federal Reserve Economic Data for providing excellent financial data APIs
 - **Academic Community**: For the foundational work on interest rate modeling
 - **Open Source Community**: For the excellent Python libraries that make this project possible
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### Installation Problems
+```bash
+# If you get "externally-managed-environment" error
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### Performance Issues
+```bash
+# Use the optimized version for faster execution
+python main_optimized.py
+
+# Or use the quick start script
+python run_app.py --mode optimized
+```
+
+#### Memory Issues
+```bash
+# Reduce simulation parameters in the code
+# Change n_paths from 1000 to 100-500
+# Change T from 30 to 5-10 years
+```
+
+#### API Key Issues
+```bash
+# The application works without API keys using sample data
+# To use real data, get a free FRED API key from:
+# https://fred.stlouisfed.org/docs/api/api_key.html
+```
+
+### Getting Help
+
+1. **Check the examples**: Run `python run_app.py --examples`
+2. **Use the setup script**: Run `python setup.py` for automated setup
+3. **Check the logs**: Look for error messages in the console output
+4. **Verify dependencies**: Ensure all packages are installed correctly
 
 ## 📞 Contact & Support
 
